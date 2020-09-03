@@ -13,6 +13,8 @@ Virus has been reported to the virus identifier.
 Not allowed for commercial use.
 @ Lou - Tang
 '''
+write_ok = True
+directory_name = './tmp/'
 
 
 def clear_tmp():
@@ -29,7 +31,7 @@ def time_alert(sec):
     time.sleep(sec)
     global write_ok
     write_ok = False
-    print('times up')
+    print('Recording stopped!')
 
 
 # Construct file path
@@ -99,25 +101,26 @@ def loop_capture():
         cont += 1
 
 
-write_ok = True
+def run():
+    # Initialising
 
-directory_name = './tmp/'
+    t = threading.Thread(target=time_alert, args=(5,))
+    t1 = threading.Thread(target=loop_capture)
+    # t2 = threading.Thread(target=capture_face)
 
-# Initialising
-session = init()
+    # t2.start()
+    t1.start()
+    t.start()
 
-t = threading.Thread(target=time_alert, args=(5,))
-t1 = threading.Thread(target=loop_capture)
-# t2 = threading.Thread(target=capture_face)
+    # Ends all running threads
+    # t2.join()
+    t1.join()
+    t.join()
 
-# t2.start()
-t1.start()
-t.start()
+    # Delete tmp file
+    clear_tmp()
 
-# Ends all running threads
-# t2.join()
-t1.join()
-t.join()
 
-# Delete tmp file
-clear_tmp()
+if __name__ == '__main__':
+    session = init()
+    run()
