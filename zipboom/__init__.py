@@ -4,7 +4,7 @@ import zipfile
 
 # Construct the useless file with CMD (Valid only for win10). Size = 1 MB
 def construct_useless_file(name):
-    os.system(f'fsutil file createnew {name} 1048576000')
+    os.system(f'fsutil file createnew {name} 1048576')
 
 
 # Change the name of the file
@@ -36,3 +36,4 @@ if __name__ == '__main__':
         ind += 1
     f.close()
     os.remove(f'{ind}.txt')
+

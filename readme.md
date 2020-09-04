@@ -10,3 +10,4 @@
 - Camera hacker [Secret seeker]
 - Keyboard Recorder (Not complete) [Key Listener]
 - Auto clicker (Not complete)
+- Merging two executable files (Not complete)
